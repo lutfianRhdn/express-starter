@@ -1,10 +1,10 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
-const routes = require('../routes');
-const db = require('../configs/database/instance');
+const routes = require('../routers');
 const path = require('path');
 const config = require('../configs');
+const morgan = require('morgan');
 const app = express();
 
 app.locals.baseUrl =config.BASE_URL;
@@ -14,9 +14,8 @@ app.use(helmet());
 app.use(cors());
 app.set('views', path.join(__dirname, '../views/pages'));
 app.use(express.static(path.join(__dirname, '../public')));
-
-db();
-
+app.set('view engine', 'ejs');
+app.use(morgan('dev'))
 app.use(routes);
 
 module.exports = app;
