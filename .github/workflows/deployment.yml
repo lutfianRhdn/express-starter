@@ -24,13 +24,13 @@ jobs:
           node-version: '18'
 
       - name: Installing Dependencies
-      - run: npm install
+        run: npm install
         
       - name: Run Migration
-      - run: npx prisma migrate deploy
+        run: npx prisma migrate deploy
       
       - name: Run Tests
-      - run: npm test
+        run: npm test
   deploy:
     needs: build
 
