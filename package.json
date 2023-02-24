@@ -4,12 +4,12 @@
   "description": "beliver company profile ",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha src/services/**/*.test.js",
     "prepare": "husky install",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "seed": "node ./src/configs/database/seeders/index.js",
-    "lint": "eslint src/"
+    "lint": "eslint src/**/*.{js,ts} --fix"
   },
   "repository": {
     "type": "git",

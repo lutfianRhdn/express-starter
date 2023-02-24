@@ -1,6 +1,6 @@
-const {Users} = require('../../../utils/database')
+const {users:UsersModel} = require('../../../utils/database')
 
 module.exports= async () => {
-    const users = await Users.findMany();
+    const users = await UsersModel.findMany();
     return users;
 }
