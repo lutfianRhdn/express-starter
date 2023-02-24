@@ -10,6 +10,13 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": "latest"
     },
+    "ignorePatterns":[
+        "node_modules/*",
+        "dist/*",
+        "src/public/*",
+        "src/views/*",
+        "src/services/**/tests/*",
+    ],  
     "rules": {
     }
 }
