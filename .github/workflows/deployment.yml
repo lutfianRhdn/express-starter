@@ -25,10 +25,10 @@ jobs:
 
       - name: Installing Dependencies
         run: npm install
-        
-      - name: Run Migration
-        run: npx prisma migrate deploy
-      
+
+      - name: Run Lint
+        run: npm run lint
+ 
       - name: Run Tests
         run: npm test
   deploy:
