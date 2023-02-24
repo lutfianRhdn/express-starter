@@ -1,0 +1,48 @@
+# CI Name
+name: 'Deployment'
+
+# Only running when
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    # Running on latest version of Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Setup Node for Installing Dependencies
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Installing Dependencies
+        run: npm install
+        
+      - name: Run Migration
+      - run: npx prisma migrate deploy
+      
+      - name: Run Tests
+      - run: npm test
+  deploy:
+    needs: build
+
+    # Running on latest version of Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploying to VPS
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.VPS_HOSTNAME }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          port: ${{ secrets.VPS_PORT }}
+          script: cd beliver-fashion/; git pull; npm install;pm2 restart beliver-fashion;
