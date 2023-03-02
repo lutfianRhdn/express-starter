@@ -49,4 +49,5 @@ jobs:
             cd beliver-fashion/
             git pull
             npm install
+            npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/tailwind-bundler.css 
             pm2 restart beliver-fashion
